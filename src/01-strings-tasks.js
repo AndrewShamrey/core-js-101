@@ -35,7 +35,7 @@ function concatenateStrings(str1, str2) {
  *   ''      => 0
  */
 function getStringLength(str) {
-  return str1.length;
+  return str.length;
 }
 
 /**
@@ -127,7 +127,7 @@ function repeatString(value, count) {
  *   'ABABAB','BA' => 'ABAB'
  */
 function removeFirstOccurrences(str, value) {
-  return  str.replace(value, '');
+  return str.replace(value, '');
 }
 
 /**
@@ -142,7 +142,11 @@ function removeFirstOccurrences(str, value) {
  *   '<a>' => 'a'
  */
 function unbracketTag(str) {
-  return  str.replace('<', '').split("").reverse().join("").replace('>', '').split("").reverse().join("");
+  return str.replace('<', '').split('').reverse().join('')
+    .replace('>', '')
+    .split('')
+    .reverse()
+    .join('');
 }
 
 
@@ -176,7 +180,7 @@ function convertToUpperCase(str) {
  *   'info@gmail.com' => ['info@gmail.com']
  */
 function extractEmails(str) {
-  return  str.split(";");
+  return str.split(';');
 }
 
 /**
@@ -206,10 +210,14 @@ function getRectangleString(width, height) {
   let resultStr = '';
   let currentStr;
   for (let i = 0; i < height; i++) {
-    if (i === 0) currentStr = String.fromCharCode(9484).concat(String.fromCharCode(9472).repeat(width - 2)).concat(String.fromCharCode(9488));
-    else if (i === height - 1) currentStr = String.fromCharCode(9492).concat(String.fromCharCode(9472).repeat(width - 2)).concat(String.fromCharCode(9496));
-    else currentStr = String.fromCharCode(9474).concat(' '.repeat(width - 2)).concat(String.fromCharCode(9474));
-    resultStr = resultStr.concat(currentStr).concat("\n");
+    if (i === 0) {
+      currentStr = String.fromCharCode(9484).concat(String.fromCharCode(9472).repeat(width - 2)).concat(String.fromCharCode(9488));
+    } else if (i === height - 1) {
+      currentStr = String.fromCharCode(9492).concat(String.fromCharCode(9472).repeat(width - 2)).concat(String.fromCharCode(9496));
+    } else {
+      currentStr = String.fromCharCode(9474).concat(' '.repeat(width - 2)).concat(String.fromCharCode(9474));
+    }
+    resultStr = resultStr.concat(currentStr).concat('\n');
   }
   return resultStr;
 }
@@ -235,11 +243,11 @@ function encodeToRot13(str) {
   return str.split('').map((letter) => {
     if (letter.charCodeAt() >= 65 && letter.charCodeAt() <= 77) {
       return String.fromCharCode(letter.charCodeAt() + 13);
-    } else if (letter.charCodeAt() >= 78 && letter.charCodeAt() <= 90) {
+    } if (letter.charCodeAt() >= 78 && letter.charCodeAt() <= 90) {
       return String.fromCharCode(letter.charCodeAt() - 13);
-    } else if (letter.charCodeAt() >= 97 && letter.charCodeAt() <= 109) {
+    } if (letter.charCodeAt() >= 97 && letter.charCodeAt() <= 109) {
       return String.fromCharCode(letter.charCodeAt() + 13);
-    } else if (letter.charCodeAt() >= 110 && letter.charCodeAt() <= 122) {
+    } if (letter.charCodeAt() >= 110 && letter.charCodeAt() <= 122) {
       return String.fromCharCode(letter.charCodeAt() - 13);
     }
     return letter;
@@ -260,9 +268,9 @@ function encodeToRot13(str) {
  *   isString(new String('test')) => true
  */
 function isString(value) {
-  let regex = /^\[object (\S+?)\]$/;
-  let matches = Object.prototype.toString.call(value).match(regex) || [];
-  return matches[1] === 'String' ? true : false;
+  const regex = /^\[object (\S+?)\]$/;
+  const matches = Object.prototype.toString.call(value).match(regex) || [];
+  return matches[1] === 'String';
 }
 
 
