@@ -209,13 +209,17 @@ function extractEmails(str) {
 function getRectangleString(width, height) {
   let resultStr = '';
   let currentStr;
-  for (let i = 0; i < height; i++) {
+  let middleStr;
+  for (let i = 0; i < height; i + 1) {
     if (i === 0) {
-      currentStr = String.fromCharCode(9484).concat(String.fromCharCode(9472).repeat(width - 2)).concat(String.fromCharCode(9488));
+      middleStr = String.fromCharCode(9484).concat(String.fromCharCode(9472).repeat(width - 2));
+      currentStr = middleStr.concat(String.fromCharCode(9488));
     } else if (i === height - 1) {
-      currentStr = String.fromCharCode(9492).concat(String.fromCharCode(9472).repeat(width - 2)).concat(String.fromCharCode(9496));
+      middleStr = String.fromCharCode(9492).concat(String.fromCharCode(9472).repeat(width - 2));
+      currentStr = middleStr.concat(String.fromCharCode(9496));
     } else {
-      currentStr = String.fromCharCode(9474).concat(' '.repeat(width - 2)).concat(String.fromCharCode(9474));
+      middleStr = String.fromCharCode(9474).concat(' '.repeat(width - 2));
+      currentStr = middleStr.concat(String.fromCharCode(9474));
     }
     resultStr = resultStr.concat(currentStr).concat('\n');
   }
