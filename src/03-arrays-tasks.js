@@ -605,12 +605,8 @@ function getElementByIndexes(arr, indexes) {
  *
  */
 function swapHeadAndTail(arr) {
-  // if (arr.length % 2 === 0) {
   return arr.slice(Math.floor(arr.length / 2))
     .concat(arr.slice(0, Math.floor(arr.length / 2)));
-  // } else {
-  //   return arr.slice(Math.floor(arr.length / 2)).concat(arr[(arr.length + 1) / 2])
-  //     .concat(arr.slice(0, Math.floor(arr.length / 2)))};
 }
 
 
