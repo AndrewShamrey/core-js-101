@@ -36,11 +36,9 @@ function findElement(arr, value) {
  *    5 => [ 1, 3, 5, 7, 9 ]
  */
 function generateOdds(len) {
-  const array = [];
-  for (let i = 1; i < 2 * len; i += 2) {
-    array.push(i);
-  }
-  return array;
+  const array = new Array(len);
+  array.fill(0);
+  return array.map((num, index) => 1 + index * 2 + num);
 }
 
 
@@ -204,7 +202,7 @@ function getTail(arr, n) {
  *    +'30,31,32,33,34'
  */
 function toCsvText(arr) {
-  return arr.map((elem) => elem.join(',')).join('/n');
+  return arr.map((elem) => elem.join(',')).join('\n');
 }
 
 /**
@@ -367,7 +365,7 @@ function getItemsSum(arr) {
  *  [ null, undefined, NaN, false, 0, '' ]  => 6
  */
 function getFalsyValuesCount(arr) {
-  return arr.filter((elem) => Boolean(elem)).length;
+  return arr.filter((elem) => Boolean(!elem)).length;
 }
 
 /**
@@ -605,7 +603,13 @@ function getElementByIndexes(arr, indexes) {
  *
  */
 function swapHeadAndTail(arr) {
-  return arr.slice(Math.floor(arr.length / 2))
+  if (arr.length < 2) return arr;
+  if (arr.length % 2 === 0) {
+    return arr.slice(Math.ceil(arr.length / 2))
+      .concat(arr.slice(0, Math.floor(arr.length / 2)));
+  }
+  return arr.slice(Math.ceil(arr.length / 2))
+    .concat(arr[(arr.length - 1) / 2])
     .concat(arr.slice(0, Math.floor(arr.length / 2)));
 }
 

@@ -210,7 +210,7 @@ function getRectangleString(width, height) {
   let resultStr = '';
   let currentStr;
   let middleStr;
-  for (let i = 0; i < height; i + 1) {
+  for (let i = 0; i < height; i += 1) {
     if (i === 0) {
       middleStr = String.fromCharCode(9484).concat(String.fromCharCode(9472).repeat(width - 2));
       currentStr = middleStr.concat(String.fromCharCode(9488));
