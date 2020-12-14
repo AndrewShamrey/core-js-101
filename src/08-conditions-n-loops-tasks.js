@@ -414,8 +414,18 @@ function getCommonDirectoryPath(pathes) {
  *                         [ 6 ]]
  *
  */
-function getMatrixProduct(/* m1, m2 */) {
-  throw new Error('Not implemented');
+function getMatrixProduct(m1, m2) {
+  const result = new Array(Math.min(m1.length, m2.length));
+  for (let m1row = 0; m1row < m1.length; m1row += 1) {
+    result[m1row] = Array(m2[0].length);
+    for (let m2col = 0; m2col < m2[0].length; m2col += 1) {
+      result[m1row][m2col] = 0;
+      for (let m1col = 0; m1col < m1[0].length; m1col += 1) {
+        result[m1row][m2col] += m1[m1row][m1col] * m2[m1col][m2col];
+      }
+    }
+  }
+  return result;
 }
 
 
@@ -449,8 +459,19 @@ function getMatrixProduct(/* m1, m2 */) {
  *    [    ,   ,    ]]
  *
  */
-function evaluateTicTacToePosition(/* position */) {
-  throw new Error('Not implemented');
+function evaluateTicTacToePosition(position) {
+  const one = position[0];
+  const two = position[1];
+  const three = position[2];
+  const oneCol = [one[0], two[0], three[0]];
+  const twoCol = [one[1], two[1], three[1]];
+  const threeCol = [one[2], two[2], three[2]];
+  const crossOne = [one[0], two[1], three[2]];
+  const crossTwo = [one[2], two[1], three[0]];
+  const resArray = [one, two, three, oneCol, twoCol, threeCol, crossOne, crossTwo];
+  const result = resArray.filter((pos) => (pos.every((sign) => sign === 'X') || pos.every((sign) => sign === '0')) && pos.length === 3);
+  if (result.length !== 0) return result[0][0];
+  return undefined;
 }
 
 
